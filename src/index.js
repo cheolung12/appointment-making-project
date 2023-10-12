@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import NewSchedule from './pages/NewSchedule';
 import MyCalendar from './pages/MyCalendar';
 import Recommendation from './pages/Recommendation';
+import FindLocation from './pages/FindLocation';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { path: 'schedule', element: <NewSchedule /> },
       { path: 'calendar/:userId', element: <MyCalendar /> },
       { path: 'recommend', element: <Recommendation /> },
+      { path: 'findlocation', element: <FindLocation /> },
     ],
   },
 ]);
