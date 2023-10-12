@@ -10,7 +10,7 @@ export default function MapContainer({ searchPlaces }) {
       level: 3,
     };
     const map = new kakao.maps.Map(container, options);
-
+    const cor = [];
     // 장소 검색 객체
     const ps = new kakao.maps.services.Places();
 
@@ -27,6 +27,14 @@ export default function MapContainer({ searchPlaces }) {
 
           // 모든 마커를 포함하는 범위로 지도 설정
           map.setBounds(bounds);
+          cor.push({x: Number(data[0].x), y: Number(data[0].y)});
+
+          if(cor.length === searchPlaces.length){
+            const centerX = cor.reduce((acc, cur) => acc + cur.x, 0) / searchPlaces.length;
+            const centerY = cor.reduce((acc, cur) => acc + cur.y, 0) / searchPlaces.length;
+            const center = {x: centerX, y: centerY};
+            displayMarker(center);
+          }
         }
       }
 
@@ -37,6 +45,7 @@ export default function MapContainer({ searchPlaces }) {
         });
       }
     });
+    
   }, [searchPlaces]);
 
   return (
