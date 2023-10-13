@@ -14,13 +14,19 @@ export default function SearchPlaceInput() {
 
   const onChange = (e) => {
     setInputText(e.target.value);
+    if(e.target.value === ''){
+      setAutoComplete([]);
+    } else {
     ps.keywordSearch(e.target.value, placesSearchCB);
     function placesSearchCB(data, status) {
       if (status === kakao.maps.services.Status.OK) {
         setAutoComplete(data.map((el) => el = el.address_name));
       }
     }
+  }
+  
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,8 +41,7 @@ export default function SearchPlaceInput() {
     setInputText(address);
     setAutoComplete([]);
   }
-
-  console.log(places);
+console.log(autoComplete);
   return (
     <div>
       {!isClicked && (
