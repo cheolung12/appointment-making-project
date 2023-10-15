@@ -37,7 +37,6 @@ export default function ListWrapper({ date, idx, day, time, handleChange }) {
           return <option key={idx}>{time}</option>
         })}
       </select>
-      <button onClick={updatePossibleTime}>체크</button>
     </div>
   );
 }
