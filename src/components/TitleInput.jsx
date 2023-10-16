@@ -1,32 +1,36 @@
 // TitleInput.js
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { dataAction } from '../store/data'
 
-export default function TitleInput({ handleActivation, handleTitle }) {
+export default function TitleInput({ handleActivation}) {
   const [title, setTitle] = useState('');
   const [activation, setActivation] = useState(false);
+  const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
 
+  console.log(data);
   useEffect(() => {
-    if (title.trim() !== '') {
+    if (data.title.trim() !== '') {
       setActivation(true);
     } else {
       setActivation(false);
     }
     handleActivation(activation);
-  }, [title, handleActivation, activation]);
+  }, [data.title, handleActivation, activation]);
 
   const handleChange = (e) => {
-    setTitle(e.target.value);
-    handleTitle('title', e.target.value);
+    dispatch(dataAction.setTitle({title: e.target.value}))
   };
 
   return (
     <div>
       <input
         type='text'
-        value={title}
-        placeholder='스케줄 이름을 입력해주세요..'
+        value={data.title}
+        placeholder='이벤트를 입력해주세요..'
         onChange={handleChange}
-        className='border-b border-green-500 rounded-sm outline-none'
+        className='w-full h-10  text-xl border-b-2 border-orange-400 outline-none bg-transparent mb-2'
       />
     </div>
   );

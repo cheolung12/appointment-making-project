@@ -2,8 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { dataAction } from '../store/data'
+
 
 export default function DatePicker({ handleActivation, handleDate }) {
+  const data = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+
   const [value, onChange] = useState([]);
   const [nowDate, setNowDate] = useState('');
   const [activation, setActivation] = useState(false);
@@ -15,20 +21,23 @@ export default function DatePicker({ handleActivation, handleDate }) {
       setActivation(false);
     }
     handleActivation(activation);
-  }, [value, handleActivation, activation]);
+  }, [data.date, handleActivation, activation]);
 
   const handleDateChange = (selectedDate) => {
     onChange(selectedDate);
+    handleDate(selectedDate);
+    const startDay = moment(selectedDate[0]).format('YYYY년 MM월 DD일');
+    const endDay  = moment(selectedDate[1]).format('YYYY년 MM월 DD일')
+    dispatch(dataAction.setDate({startDay, endDay}));
     setNowDate(
       `${moment(selectedDate[0]).format('YYYY년 MM월 DD일')} ~ ${moment(
         selectedDate[1]
       ).format('YYYY년 MM월 DD일')}`
     );
-    handleDate('date', selectedDate);
   };
 
   return (
-    <div>
+    <div className='mb-14'>
       <Calendar
         onChange={handleDateChange}
         value={value}
@@ -37,8 +46,9 @@ export default function DatePicker({ handleActivation, handleDate }) {
         next2Label={null}
         prev2Label={null}
         showNeighboringMonth={false}
+        className='mb-6'
       ></Calendar>
-      <div>{nowDate}</div>
+      <div className='h-10 text-lg'>{nowDate}</div>
     </div>
   );
 }

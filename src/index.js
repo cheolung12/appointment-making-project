@@ -9,6 +9,8 @@ import NewSchedule from './pages/NewSchedule';
 import MyCalendar from './pages/MyCalendar';
 import Recommendation from './pages/Recommendation';
 import FindLocation from './pages/FindLocation';
+import { Provider } from 'react-redux';
+import store from './store';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,7 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home /> }, 
+      { index: true, element: <Home /> },
       { path: 'schedule', element: <NewSchedule /> },
       { path: 'calendar/:userId', element: <MyCalendar /> },
       { path: 'recommend', element: <Recommendation /> },
@@ -26,4 +28,8 @@ const router = createBrowserRouter([
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<RouterProvider router={router} /> );
+root.render(
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+);
