@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ListButton from './ListButton';
 
-export default function ListWrapper({ date, idx, day, time, handleChange }) {
+export default function ListWrapper({ date, idx, day, startTime, endTime, handleChange }) {
   const period = [];
   const currentDate = new Date(date[0])
   const timeArray = Array.from({ length: 24 }, (_, index) => `${String(index).padStart(2, '0')}:00`);
@@ -13,14 +13,19 @@ export default function ListWrapper({ date, idx, day, time, handleChange }) {
     currentDate.setDate(currentDate.getDate() + 1); // 다음날짜로
   }
 
-  const handleDayChange = (event) => {
-    const newDay = event.target.value;
-    handleChange(idx, newDay, time);
+  const handleDayChange = (e) => {
+    const newDay = e.target.value;
+    handleChange(idx, newDay, startTime, endTime);
   };
 
-  const handleTimeChange = (event) => {
-    const newTime = event.target.value;
-    handleChange(idx, day, newTime);
+  const handleTimeChange1 = (e) => {
+    const newTime = e.target.value;
+    handleChange(idx, day, newTime, endTime);
+  };
+
+  const handleTimeChange2 = (e) => {
+    const newTime = e.target.value;
+    handleChange(idx, day, startTime, newTime);
   };
 
   return (
@@ -31,8 +36,14 @@ export default function ListWrapper({ date, idx, day, time, handleChange }) {
           return <option key={idx}>{date}</option> 
         })}
       </select>
-      <select onChange={handleTimeChange} value={time}>
-      <option>시간</option>
+      <select onChange={handleTimeChange1} value={startTime}>
+      <option>시간1</option>
+        {timeArray.map((time, idx) => {
+          return <option key={idx}>{time}</option>
+        })}
+      </select>
+      <select onChange={handleTimeChange2} value={endTime}>
+      <option>시간2</option>
         {timeArray.map((time, idx) => {
           return <option key={idx}>{time}</option>
         })}
