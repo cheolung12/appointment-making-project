@@ -1,3 +1,70 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
+
+/* logo font */
+@font-face {
+  font-family: 'yg-jalnan';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* calendar */
+.react-calendar {
+  border-radius: 10px;
+  border: none !important;
+  /* background: transparent !important; */
+  box-shadow: 8px 5px 5px 0px rgba(232, 232, 232, 0.75);
+  -webkit-box-shadow: 8px 5px 5px 0px rgba(232, 232, 232, 0.75);
+  -moz-box-shadow: 8px 5px 5px 0px rgba(232, 232, 232, 0.75);
+}
+/* 위에 년 월 */
+.react-calendar__navigation__label > span {
+  /* font-size:  ; */
+  font-weight: bold;
+}
+/* 날짜 선택 */
+.react-calendar__tile--active {
+  background-color: orange !important;
+}
+
+/* custom overlay */
+.customoverlay {
+  background-color: rgb(247, 247, 247);
+  color: #248CFA;
+  border-radius: 10px;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #248CFA;
+  box-sizing: border-box;
+  font-size: 14px;
+  position: relative;
+  bottom: 40px;
+}
+
+.customoverlay.center {
+ background-color: orange;
+ color: white;
+ transition: transform 0.2s;
+ border: 1px solid orange;
+ bottom: 35px;
+  cursor: pointer;
+}
+.customoverlay.center:hover {
+  transform: scale(1.05);
+}
+
+/* animation */
+.fade-in {
+  opacity: 0;
+  animation: fade-in-animation 0.5s ease-in-out forwards;
+}
+
+@keyframes fade-in-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
