@@ -5,6 +5,7 @@ import DatePicker from '../components/DatePicker';
 import CreateAppointment from '../components/CreateAppointment';
 import Button from '../components/Button';
 import ResultBox from '../components/ResultBox';
+import FindLocationBanner from '../components/FindLocationBanner';
 
 export default function NewSchedule() {
   const [currentSlider, setCurrentSlider] = useState(1);
@@ -39,22 +40,25 @@ export default function NewSchedule() {
 
 
   return (
-    <div>
+    <div className='w-1/2'>
       {currentSlider === 1 && (
-        <div className={`flex flex-col justify-center items-center ${ani ? 'fade-in' : ''}`}>
+        <div className={`h-full flex flex-col justify-center items-center ${ani ? 'fade-in' : ''}`}>
           <TitleInput handleActivation={handleActivation}/>
           <PeolpleNumber />
-          <Button text={'다음'} handleClick={nextSlider} activation={isActive} />
+          <FindLocationBanner />
+          <div className='absolute bottom-32'>
+          <Button text={'다음'} handleClick={nextSlider} activation={isActive} px={'px-20'}/>
+          </div>
         </div>
       )}
 
       {currentSlider === 2 && (
         <div className={`flex flex-col justify-center items-center fade-in w-full px-`}>
-          <div className='font-bold text-2xl mb-8'>날짜를 선택해주세요</div>
+          <div className='font-bold text-2xl mb-10'>날짜를 선택해주세요</div>
           <DatePicker handleActivation={handleActivation} handleDate={handleDate}/>
-          <div className='flex'>
-          <Button text={'이전'} handleClick={previousSlider} activation={true}  />
-          <Button text={'다음'} handleClick={nextSlider} activation={isActive} />
+          <div className='flex absolute bottom-28'>
+          <Button text={'이전'} handleClick={previousSlider} activation={true} px={'px-16'}  />
+          <Button text={'다음'} handleClick={nextSlider} activation={isActive}  px={'px-16'}/>
           </div>
         </div>
       )}

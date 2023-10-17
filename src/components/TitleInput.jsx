@@ -24,14 +24,12 @@ export default function TitleInput({ handleActivation}) {
   };
 
   return (
-    <div>
       <input
         type='text'
         value={data.title}
         placeholder='이벤트를 입력해주세요..'
         onChange={handleChange}
-        className='w-full h-10  text-xl border-b-2 border-orange-400 outline-none bg-transparent mb-2'
+        className='w-2/3 h-10  text-xl border-b-2 border-orange-400 outline-none bg-transparent mb-12'
       />
-    </div>
   );
 }

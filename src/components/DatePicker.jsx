@@ -46,9 +46,9 @@ export default function DatePicker({ handleActivation, handleDate }) {
         next2Label={null}
         prev2Label={null}
         showNeighboringMonth={false}
-        className='mb-6'
+        className='mb-8'
       ></Calendar>
-      <div className='h-10 text-lg'>{nowDate}</div>
+      <div className='h-10 text-lg text-center'>{nowDate}</div>
     </div>
   );
 }
