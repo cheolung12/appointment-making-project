@@ -86,13 +86,13 @@ export default function SearchPlaceInput() {
           </div>
         </div>
       )}
-      <div className='w-full h-full flex justify-center items-start'>
+      <div className={`${isClicked && 'h-full'} w-full flex justify-center items-start`}>
         {isClicked ? (
           <MapContainer searchPlaces={places} />
         ) : (
           <button
             onClick={showMap}
-            className='h-auto box-border rounded px-16 py-3 overflow-hidden group bg-orange-500 relative hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300'
+            className='mt-4 h-auto box-border rounded px-16 py-3 overflow-hidden group bg-orange-500 relative hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300'
           >
             <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
             <span className='relative text-xl font-medium'>중간지점 찾기</span>
