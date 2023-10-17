@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Person from './Person';
 import { useSelector } from 'react-redux';
+import ResultBox from './ResultBox';
 
 export default function CreateAppointment({dateType}) {
   const data = useSelector((state) => state.data);
@@ -13,6 +14,7 @@ export default function CreateAppointment({dateType}) {
   ));
 
   return (
+    <div>
     <div className='border-r border-orange-500'>
       <div>
         <div className='text-3xl font-semibold'>{data.title}</div>
@@ -24,6 +26,8 @@ export default function CreateAppointment({dateType}) {
         <br />
         <div className='grid grid-cols-2 gap-4'>{peopleList}</div>
       </div>
+    </div>
+    <ResultBox />
     </div>
   );
 }
