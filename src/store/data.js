@@ -4,7 +4,7 @@ const initData = {
   title: '',
   count: 2,
   date: [],
-  people: Array.from({ length: 2 }, (_, idx) => `person ${idx}`),
+  people: Array.from({ length: 2 }, (_, idx) => `친구 ${idx}`),
   possibleTime: Array.from({ length: 2 }, () => []),
   result: [],
 };
