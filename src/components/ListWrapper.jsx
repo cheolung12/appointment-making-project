@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { dataAction } from '../store/data';
+import ListButton from './ListButton';
 
 export default function ListWrapper({ parentIndex, childIndex, dateType }) {
   const data = useSelector((state) => state.data);
@@ -38,12 +39,16 @@ export default function ListWrapper({ parentIndex, childIndex, dateType }) {
     dispatch(dataAction.setEndTime({ parentIndex, childIndex, newTime }));
   };
 
+  const handleDelete = (e) => {
+    dispatch(dataAction.setDelete({ parentIndex, childIndex}));
+  }
+
   return (
     <div className='flex justify-center mb-3 w-full px-1'>
       <select
         onChange={handleDayChange}
         value={data.possibleTime[parentIndex][childIndex].day}
-        className='box-border rounded-lg bg-slate-50 px-4 py-2 mr-2'
+        className='box-border rounded-lg bg-slate-50 px-4 py-2 mr-2 w-1/3'
       >
         <option>날짜</option>
         {period.map((date, idx) => {
@@ -53,7 +58,7 @@ export default function ListWrapper({ parentIndex, childIndex, dateType }) {
       <select
         onChange={handleTimeChange1}
         value={data.possibleTime[parentIndex][childIndex].startTime}
-        className='box-border  rounded-lg bg-slate-50 px-2 py-1 mr-2'
+        className='box-border  rounded-lg bg-slate-50 px-2 py-1 mr-2 w-1/4'
       >
         <option>시간1</option>
         {timeArray.map((time, idx) => {
@@ -63,13 +68,14 @@ export default function ListWrapper({ parentIndex, childIndex, dateType }) {
       <select
         onChange={handleTimeChange2}
         value={data.possibleTime[parentIndex][childIndex].endTime}
-        className='box-border rounded-lg bg-slate-50 px-2 py-2'
+        className='box-border rounded-lg bg-slate-50 px-2 py-2 w-1/4'
       >
         <option>시간2</option>
         {timeArray.map((time, idx) => {
           return <option key={idx}>{time}</option>;
         })}
       </select>
+      <ListButton status={'delete'} handleDelete={handleDelete}/>
     </div>
   );
 }
