@@ -55,6 +55,10 @@ const dataSlice = createSlice({
       const { parentIndex, childIndex, newTime } = action.payload;
       state.possibleTime[parentIndex][childIndex].endTime = newTime;
     },
+    setReset(state){
+      if(state.title !== '' || state.count !== 2 || state.date.length !== 0)
+        window.location.reload();
+    },
     setOverWrappingTime(state) {
       const map = new Map();
       const people = state.people;
@@ -76,7 +80,6 @@ const dataSlice = createSlice({
 
       const data = [];
       map.forEach((value, key) => data.push({ [key]: value }));
-      console.log(data);
 
       // 각 사람의 시간대를 종합
       data.forEach((el) => {
@@ -116,6 +119,7 @@ const dataSlice = createSlice({
               }
             })
             .filter(Boolean);
+            // filter(Boolean): 배열에서 true 값을 유지하고 false, null, undefined 또는 다른 거짓 값들을 제거하는 배열 메소드
 
           state.result.push([key, [startTime, endTime], overlappingPersons]);
         } else {
