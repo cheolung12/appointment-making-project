@@ -42,6 +42,8 @@ export default function Person({ idx, dateType }) {
           onChange={(e) => setName(e.target.value)}
           onBlur={handleEdit}
           onKeyDown={handleKeyPress}
+          className='text-lg font-medium mb-2 outline-orange-500 bg-transparent'
+          autoFocus
         ></input>
       )}
       <div className='w-full'> 
