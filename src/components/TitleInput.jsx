@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dataAction } from '../store/data'
 
 export default function TitleInput({ handleActivation}) {
-  const [title, setTitle] = useState('');
   const [activation, setActivation] = useState(false);
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
