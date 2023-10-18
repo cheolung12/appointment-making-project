@@ -39,23 +39,35 @@ export default function ListWrapper({ parentIndex, childIndex, dateType }) {
   };
 
   return (
-    <div className='flex'>
-      <select onChange={handleDayChange} value={data.possibleTime[parentIndex][childIndex].day}>
+    <div className='flex justify-center mb-3 w-full px-1'>
+      <select
+        onChange={handleDayChange}
+        value={data.possibleTime[parentIndex][childIndex].day}
+        className='box-border rounded-lg bg-slate-50 px-4 py-2 mr-2'
+      >
         <option>날짜</option>
         {period.map((date, idx) => {
           return <option key={idx}>{date}</option>;
         })}
       </select>
-      <select onChange={handleTimeChange1} value={data.possibleTime[parentIndex][childIndex].startTime}>
-      <option>시간1</option>
+      <select
+        onChange={handleTimeChange1}
+        value={data.possibleTime[parentIndex][childIndex].startTime}
+        className='box-border  rounded-lg bg-slate-50 px-2 py-1 mr-2'
+      >
+        <option>시간1</option>
         {timeArray.map((time, idx) => {
-          return <option key={idx}>{time}</option>
+          return <option key={idx}>{time}</option>;
         })}
       </select>
-      <select onChange={handleTimeChange2} value={data.possibleTime[parentIndex][childIndex].endTime}>
-      <option>시간2</option>
+      <select
+        onChange={handleTimeChange2}
+        value={data.possibleTime[parentIndex][childIndex].endTime}
+        className='box-border rounded-lg bg-slate-50 px-2 py-2'
+      >
+        <option>시간2</option>
         {timeArray.map((time, idx) => {
-          return <option key={idx}>{time}</option>
+          return <option key={idx}>{time}</option>;
         })}
       </select>
     </div>

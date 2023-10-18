@@ -33,10 +33,10 @@ export default function Person({ idx, dateType }) {
   };
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-      <span className='mb-2 text-2xl'><FaUserAlt /></span>
+    <div className='flex flex-col justify-start items-center w-full mb-4'>
+      <span className='mb-2 text-4xl text-orange-600'><FaUserAlt /></span>
       {!editable ? (
-        <div onDoubleClick={() => setEditable((prev) => !prev)} className='text-lg mb-2'>{name}</div>
+        <div onDoubleClick={() => setEditable((prev) => !prev)} className='text-lg font-medium mb-2'>{name}</div>
       ) : (
         <input
           type='text'
@@ -46,6 +46,7 @@ export default function Person({ idx, dateType }) {
           onKeyDown={handleKeyPress}
         ></input>
       )}
+      <div className='w-full'> 
       {data.possibleTime[idx].map((_, childIndex) => {
         return (
           <ListWrapper
@@ -56,6 +57,7 @@ export default function Person({ idx, dateType }) {
           />
         );
       })}
+      </div>
       <ListButton status={'add'} handleAddInput={handleAddInput} />
     </div>
   );

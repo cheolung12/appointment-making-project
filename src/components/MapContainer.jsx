@@ -74,7 +74,7 @@ export default function MapContainer({ searchPlaces }) {
           content,
           yAnchor: 1,
         });
-       
+        console.log(marker, customOverlay);
       }
 
       let imageSrc =
@@ -102,6 +102,7 @@ export default function MapContainer({ searchPlaces }) {
           content,
           yAnchor: 1,
         });
+        console.log(customOverlay);
       }
     });
   }, [searchPlaces]);

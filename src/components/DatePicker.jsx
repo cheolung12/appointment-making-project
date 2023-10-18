@@ -21,7 +21,7 @@ export default function DatePicker({ handleActivation, handleDate }) {
       setActivation(false);
     }
     handleActivation(activation);
-  }, [data.date, handleActivation, activation]);
+  }, [data.date, handleActivation, activation, value.length]);
 
   const handleDateChange = (selectedDate) => {
     onChange(selectedDate);
