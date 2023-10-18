@@ -96,9 +96,9 @@ export default function MapContainer({ searchPlaces }) {
       function displaySubwayMarker(place) {
         var content =
           '<div class="customoverlay subway">' +
+          `  <a href=${place.place_url} target="_blank">` +
           `    <span class="title">${place.place_name}</span>` +
           '</div>';
-
         let marker = new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(place.y, place.x),
@@ -108,7 +108,7 @@ export default function MapContainer({ searchPlaces }) {
           map: map,
           position: new kakao.maps.LatLng(place.y, place.x),
           content,
-          yAnchor: 1,
+          yAnchor: 1, 
         });
       }
 
@@ -120,7 +120,6 @@ export default function MapContainer({ searchPlaces }) {
         marker.setMap(map);
         var content =
           '<div class="customoverlay center">' +
-          // '  <a href="https://map.kakao.com/link/map/11394059" target="_blank">' +
           `    <span class="title">${place.address_name}</span>` +
           '  </a>' +
           '</div>';
