@@ -12,11 +12,11 @@ export default function ResultBox() {
           const [date, time, people] = overlap;
           return (
             <div key={uuidv4()} className='text-orange-500 mb-6'>
-              <div className='mb-1 text-xl font-semibold'>
+              <div className='mb-1 text-2xl'>
                 <span className='mr-2'>{date}</span>
                 {time[0]}시~{time[1]}시{' '}
               </div>
-              <div className='mb-1 text-black text-lg font-medium'>
+              <div className='mb-1 text-black text-xl font-medium'>
                 인원:{' '}
                 {people.map((person) => (
                   <span key={uuidv4()} className='mr-1'>{person}</span>
