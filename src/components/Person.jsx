@@ -11,8 +11,6 @@ export default function Person({ idx, dateType }) {
   const dispatch = useDispatch(); 
   const [name, setName] = useState(data.people[idx]);
   const [editable, setEditable] = useState(false);
-
-  console.log(data);
   
   const handleEdit = (e) => {
     setEditable((prev) => !prev);

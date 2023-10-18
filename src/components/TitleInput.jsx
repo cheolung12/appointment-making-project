@@ -7,8 +7,7 @@ export default function TitleInput({ handleActivation}) {
   const [activation, setActivation] = useState(false);
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
-
-  console.log(data);
+  
   useEffect(() => {
     if (data.title.trim() !== '') {
       setActivation(true);

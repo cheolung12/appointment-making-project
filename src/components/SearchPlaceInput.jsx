@@ -13,7 +13,6 @@ export default function SearchPlaceInput() {
   const [autoComplete, setAutoComplete] = useState([]);
 
   const ps = new kakao.maps.services.Places();
-  console.log(autoComplete);
   const onChange = (e) => {
     setInputText(e.target.value);
     if (e.target.value === '') {
