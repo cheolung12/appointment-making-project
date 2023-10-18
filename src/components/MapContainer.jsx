@@ -147,5 +147,5 @@ export default function MapContainer({ searchPlaces }) {
     });
   }, [searchPlaces]);
 
-  return <div id='myMap' ref={containerRef} className='w-full h-full'></div>;
+  return <div id='myMap' ref={containerRef} className='w-full h-full mt-9'></div>;
 }
