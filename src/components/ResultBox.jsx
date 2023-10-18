@@ -8,12 +8,22 @@ export default function ResultBox() {
   return (
     <div className='w-1/3 pl-4 overflow-y-scroll'>
       <div className='flex flex-col justify-center items-center'>
-        {data.result.map((overlap) => {
+        {data.result.map((overlap, idx) => {
           const [date, time, people] = overlap;
-          return <div key={uuidv4()} className='text-orange-500 mb-6'>
-            <div className='mb-1 text-xl font-semibold'><span className='mr-2'>{date}</span>{time[0]}시~{time[1]}시 </div>
-            <div className='mb-1 text-black text-lg font-medium'>인원: {people.map((person) => <span className='mr-1'>{person}</span>)}</div>
-          </div>;
+          return (
+            <div key={uuidv4()} className='text-orange-500 mb-6'>
+              <div className='mb-1 text-xl font-semibold'>
+                <span className='mr-2'>{date}</span>
+                {time[0]}시~{time[1]}시{' '}
+              </div>
+              <div className='mb-1 text-black text-lg font-medium'>
+                인원:{' '}
+                {people.map((person) => (
+                  <span key={uuidv4()} className='mr-1'>{person}</span>
+                ))}
+              </div>
+            </div>
+          );
         })}
       </div>
     </div>
