@@ -7,7 +7,7 @@ import Button from '../components/Button';
 import ResultBox from '../components/ResultBox';
 import FindLocationBanner from '../components/FindLocationBanner';
 import AppointmentInfo from '../components/AppointmentInfo';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { dataAction } from '../store/data';
 
 export default function NewSchedule() {
@@ -15,6 +15,7 @@ export default function NewSchedule() {
   const [isActive, setIsActive] = useState(false);
   const [dateType, setDateType] = useState([]);
   const [ani, setAni] = useState(false);
+  const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,7 +44,20 @@ export default function NewSchedule() {
   };
   
   const handleClick = () => {
-    dispatch(dataAction.setOverWrappingTime());
+    const possibleTime = data.possibleTime;
+    let isValid = true;
+    possibleTime.forEach((person) => {
+      person.forEach((time) => {
+        if(time.day === '' || time.startTime === '' || time.endTime === ''){
+          alert('정보를 모두 입력해주세요!')
+          isValid = false;
+        }
+      })
+    });
+    if(isValid){
+      dispatch(dataAction.setOverWrappingTime());
+    }
+    
   }
 
   return (
