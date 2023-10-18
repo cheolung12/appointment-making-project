@@ -20,7 +20,7 @@ const dataSlice = createSlice({
       state.count++;
       state.people = Array.from(
         { length: state.count },
-        (_, idx) => `person ${idx}`
+        (_, idx) => `친구 ${idx+1}`
       );
       state.possibleTime = Array.from({ length: state.count }, () => []);
     },
@@ -28,7 +28,7 @@ const dataSlice = createSlice({
       state.count--;
       state.people = Array.from(
         { length: state.count },
-        (_, idx) => `person ${idx}`
+        (_, idx) => `친구 ${idx+1}`
       );
       state.possibleTime = Array.from({ length: state.count }, () => []);
     },
@@ -42,6 +42,11 @@ const dataSlice = createSlice({
     setPossible(state, action) {
       const { idx, time } = action.payload;
       state.possibleTime[idx].push(time);
+    },
+    setDelete(state, action){
+      const { parentIndex, childIndex} = action.payload;
+      const updated = state.possibleTime[parentIndex].filter((_, i) => i !== childIndex);
+      state.possibleTime[parentIndex] = updated;
     },
     setDay(state, action) {
       const { parentIndex, childIndex, newDay } = action.payload;
