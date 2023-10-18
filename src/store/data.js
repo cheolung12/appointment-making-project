@@ -59,6 +59,7 @@ const dataSlice = createSlice({
       const map = new Map();
       const people = state.people;
       const possibleTime = state.possibleTime;
+      state.result = [];
 
       // 자료형 변경
       for (let i = 0; i < possibleTime.length; i++) {
@@ -116,12 +117,9 @@ const dataSlice = createSlice({
             })
             .filter(Boolean);
 
-          state.result.push(
-            `${key} 인원이 가장 많이 겹치는 시간대 ${startTime}시~${endTime}시, 인원: ${overlappingPersons.join(
-              ', '
-            )}`);
+          state.result.push([key, [startTime, endTime], overlappingPersons]);
         } else {
-           state.result.push('겹치는 시간대가 없습니다.');
+          state.result = ['겹치는 시간대가 없습니다.'];
         }
       });
     },
