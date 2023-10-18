@@ -37,9 +37,14 @@ export default function SearchPlaceInput() {
   const showMap = () => setIsClicked((prev) => !prev);
 
   const handleAddress = (address) => {
-    setInputText(address);
+    setPlaces([...places, address]);
+    setInputText('');
     setAutoComplete([]);
   };
+
+  const handleDelete = (place) => {
+    setPlaces(places.filter((element) => element !== place));
+  }
 
   return (
     <div className={!isClicked ? 'w-1/2 h-1/2 mb-8' : 'w-3/4 h-3/4'}>
@@ -75,10 +80,11 @@ export default function SearchPlaceInput() {
               ))}
             </div>
             {autoComplete.length === 0 &&
-              places.map((place, idx) => {
+              places.map((place) => {
                 return (
-                  <div key={uuidv4()} className='px-4 mb-1'>
-                    <span className='flex items-center text-xl '><span className='text-orange-600 mr-2'><FaLocationDot /></span>{place}</span> 
+                  <div key={uuidv4()} className='px-4 mb-4 flex'>
+                    <span className='flex items-center text-xl '><span className='text-orange-600 mr-2'><FaLocationDot /></span>{place}</span>
+                    <button onClick={() => handleDelete(place)} className='ml-3 text-xs  text-gray-600'>X</button> 
                   </div>
                 );
               })}
