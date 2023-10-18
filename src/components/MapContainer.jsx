@@ -42,7 +42,6 @@ export default function MapContainer({ searchPlaces }) {
 
             async function callback(result, status) {
               if (status === kakao.maps.services.Status.OK) {
-                console.log(result[0]);
                 const center = {
                   address_name: result[0].address.address_name,
                   x: centerX,
@@ -63,7 +62,7 @@ export default function MapContainer({ searchPlaces }) {
           `    <span class="title">${place.place_name}</span>` +
           '  </a>' +
           '</div>';
-        
+
         let marker = new kakao.maps.Marker({
           map: map,
           position: new kakao.maps.LatLng(place.y, place.x),
@@ -74,14 +73,44 @@ export default function MapContainer({ searchPlaces }) {
           content,
           yAnchor: 1,
         });
-        console.log(marker, customOverlay);
       }
 
       let imageSrc =
         'https://static.vecteezy.com/system/resources/previews/009/267/042/original/location-icon-design-free-png.png';
       let imageSize = new kakao.maps.Size(20, 32);
-      let imageOption = {offset: new kakao.maps.Point(10, 32)}; 
-      let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+      let imageOption = { offset: new kakao.maps.Point(10, 32) };
+      let markerImage = new kakao.maps.MarkerImage(
+        imageSrc,
+        imageSize,
+        imageOption
+      );
+
+      let subwayImageSrc = '/subway.png';
+      let subwayImageSize = new kakao.maps.Size(30, 32);
+      let subwayMarkerImage = new kakao.maps.MarkerImage(
+        subwayImageSrc,
+        subwayImageSize,
+        imageOption
+      );
+
+      function displaySubwayMarker(place) {
+        var content =
+          '<div class="customoverlay subway">' +
+          `    <span class="title">${place.place_name}</span>` +
+          '</div>';
+
+        let marker = new kakao.maps.Marker({
+          map: map,
+          position: new kakao.maps.LatLng(place.y, place.x),
+          image: subwayMarkerImage,
+        });
+        var customOverlay = new kakao.maps.CustomOverlay({
+          map: map,
+          position: new kakao.maps.LatLng(place.y, place.x),
+          content,
+          yAnchor: 1,
+        });
+      }
 
       function displayCenterMarker(place) {
         let marker = new kakao.maps.Marker({
@@ -95,35 +124,29 @@ export default function MapContainer({ searchPlaces }) {
           `    <span class="title">${place.address_name}</span>` +
           '  </a>' +
           '</div>';
-        
+
         var customOverlay = new kakao.maps.CustomOverlay({
           map: map,
           position: new kakao.maps.LatLng(place.y, place.x),
           content,
           yAnchor: 1,
         });
-        console.log(customOverlay);
+
+        // 주변 지하철역 검색
+        ps.keywordSearch('지하철역', placesSearchCB, {
+          location: new kakao.maps.LatLng(place.y, place.x),
+        });
+
+        function placesSearchCB(data, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            for (var i = 0; i < Math.min(data.length, 3); i++) {
+              displaySubwayMarker(data[i]);
+            }
+          }
+        }
       }
     });
   }, [searchPlaces]);
-
-  // const 근처지하철역 = () => {
-  //   ps.categorySearch('SW8', placesSearchSubway, {useMapBounds:true});
-  //   function placesSearchSubway(data, status) {
-  //   if (status === kakao.maps.services.Status.OK) {
-  //     let filteredResults = [];
-
-  //     // 최대 3개의 역만 선택하도록 반복문을 사용합니다.
-  //     for (var i = 0; i < Math.min(3, data.length); i++) {
-  //       filteredResults.push(data[i]);
-  //     }
-  //     // 필터링된 결과를 출력합니다.
-  //     for (var i = 0; i < filteredResults.length; i++) {
-  //       console.log(filteredResults[i]);
-  //     }
-  //   }
-  // }
-  // }
 
   return <div id='myMap' ref={containerRef} className='w-full h-full'></div>;
 }
