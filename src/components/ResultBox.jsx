@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function ResultBox() {
   const data = useSelector((state) => state.data);
-
+  console.log(data);
   return (
     <div className='w-1/3 pl-4 overflow-y-scroll'>
       <div className='flex flex-col justify-center items-center'>

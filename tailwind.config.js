@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         LogoFont: ["yg-jalnan"],
+        BoldFont: ['SUITE-Bold'],
       },
     },
   },
