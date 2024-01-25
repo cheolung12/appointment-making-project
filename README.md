@@ -1,5 +1,6 @@
 ## 소개
-중간 지점 찾기 기능과 겹치는 시간 찾기 기능을 활용하여 좀 더 일정을 편하게 잡을 수 있게 도와주는 웹 서비스입니다.
+중간 지점 찾기 기능과 겹치는 시간 찾기 기능을 활용하여 좀 더 일정을 편하게 잡을 수 있게 도와주는 웹 서비스입니다. <br />
+<a href='https://web-appointment-making-project-euegqv2blnvns8kd.sel5.cloudtype.app' target="_blank"> Demo </a>
 
 ## 기술 스택
 <p>
