@@ -12,8 +12,8 @@ export default function CreateAppointment({ dateType }) {
   ));
 
   return (
-    <div className='w-2/3 h-4/5 overflow-y-scroll pr-4'>
-      <div className='grid grid-cols-2 gap-4'>{peopleList}</div>
+    <div className='w-full sm:overflow-y-scroll flex-grow mb-4 sm:mb-0'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>{peopleList}</div>
     </div>
   );
 }

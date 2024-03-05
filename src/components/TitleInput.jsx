@@ -27,7 +27,7 @@ export default function TitleInput({ handleActivation}) {
         value={data.title}
         placeholder='이벤트를 입력해주세요..'
         onChange={handleChange}
-        className='w-2/3 h-10  text-xl border-b-2 border-orange-400 outline-none bg-transparent mb-12'
+        className='w-2/3 min-w-[250px] sm:min-w-[400px] px-4 py-6 h-10 text-xl border-2 rounded-lg bg-orange-50 border-orange-300 outline-none bg-transparent mb-10 sm:mb-12 mt-2 sm:mt-0'
       />
   );
 }

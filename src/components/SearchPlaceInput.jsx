@@ -47,7 +47,7 @@ export default function SearchPlaceInput() {
   }
 
   return (
-    <div className={!isClicked ? 'w-1/2 h-1/2 mb-8' : 'w-3/4 h-3/4'}>
+    <div className={!isClicked ? 'w-3/4 sm:w-1/2 h-1/2 mb-8' : 'w-3/4 h-3/4'}>
       {!isClicked && (
         <div className='w-full h-full'>
           <form onSubmit={handleSubmit}>
@@ -60,7 +60,7 @@ export default function SearchPlaceInput() {
               />
               <button
                 type='submit'
-                className='ml-4 h-auto box-border rounded px-8 py-3 overflow-hidden group bg-orange-500 relative hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300'
+                className='ml-4 h-auto box-border rounded p-2 sm:px-8 sm:py-3 overflow-hidden group bg-orange-500 relative hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-orange-400 transition-all ease-out duration-300'
               >
                 <span className='absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease'></span>
                 <span className='relative text-xl font-medium'>검색</span>
@@ -68,12 +68,12 @@ export default function SearchPlaceInput() {
             </div>
           </form>
           <div className='relative h-3/4 overflow-y-auto'>
-            <div className='absolute top-0 z-10 w-full flex flex-col justify-center items-center px-4 pr-6'>
+            <div className='absolute top-0 z-10 w-full flex flex-col justify-center items-center px-0 sm:px-4 pr-6'>
               {autoComplete.map((el) => (
                 <div
                   key={uuidv4()}
                   onClick={() => handleAddress(el)}
-                  className='w-full px-4 py-3  border-b'
+                  className='w-full px-4 py-3 border-b'
                 >
                   <span className='flex items-center'><span className='mr-3'><AiOutlineSearch /></span>{el}</span>
                 </div>
@@ -83,7 +83,7 @@ export default function SearchPlaceInput() {
               places.map((place) => {
                 return (
                   <div key={uuidv4()} className='px-4 mb-4 flex'>
-                    <span className='flex items-center text-xl '><span className='text-orange-600 mr-2'><FaLocationDot /></span>{place}</span>
+                    <span className='flex items-center text-lg sm:text-xl '><span className='text-orange-600 mr-2'><FaLocationDot /></span>{place}</span>
                     <button onClick={() => handleDelete(place)} className='ml-3 text-xs  text-gray-600'>X</button> 
                   </div>
                 );

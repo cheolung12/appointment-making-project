@@ -46,10 +46,14 @@ export default function NewSchedule() {
   const handleClick = () => {
     const possibleTime = data.possibleTime;
     let isValid = true;
+    let alertDisplayed = false;
     possibleTime.forEach((person) => {
       person.forEach((time) => {
         if(time.day === '' || time.startTime === '' || time.endTime === ''){
-          alert('정보를 모두 입력해주세요!')
+          if(!alertDisplayed){
+            alert('정보를 모두 입력해주세요!');
+            alertDisplayed = true; 
+          }
           isValid = false;
         }
       })
@@ -71,7 +75,7 @@ export default function NewSchedule() {
           <TitleInput handleActivation={handleActivation} />
           <PeolpleNumber />
           <FindLocationBanner />
-          <div className='absolute bottom-32'>
+          <div className='absolute bottom-20 sm:bottom-32'>
             <Button
               text={'다음'}
               handleClick={nextSlider}
@@ -86,12 +90,12 @@ export default function NewSchedule() {
         <div
           className={`flex flex-col justify-center items-center fade-in w-full px-`}
         >
-          <div className='font-bold text-2xl mb-10'>날짜를 선택해주세요</div>
+          <div className='font-bold text-2xl mb-4 sm:mb-10 mt-6 sm:mt-0'>날짜를 선택해주세요</div>
           <DatePicker
             handleActivation={handleActivation}
             handleDate={handleDate}
           />
-          <div className='flex absolute bottom-28'>
+          <div className='flex absolute bottom-20 sm:bottom-32'>
             <Button
               text={'이전'}
               handleClick={previousSlider}
@@ -109,18 +113,20 @@ export default function NewSchedule() {
       )}
 
       {currentSlider === 3 && (
-        <div className='fade-in w-full h-full flex flex-col items-center'>
+        <div className='fade-in w-full h-[450px] sm:h-full flex flex-col items-center'>
           <AppointmentInfo />
-          <div className='flex w-full h-3/5'>
+          <div className='flex w-full h-full overflow-auto pb-0 sm:pb-8 flex-col sm:flex-row'>
             <CreateAppointment dateType={dateType} />
             <ResultBox />
           </div>
+          <div className='absolute bottom-10'>
           <Button
               text={'조회'}
               handleClick={handleClick}
               activation={true}
               px={'px-16'}
             />
+            </div>
         </div>
       )}
     </div>

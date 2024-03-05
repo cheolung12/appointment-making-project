@@ -32,9 +32,9 @@ export default function Person({ idx, dateType }) {
 
   return (
     <div className='flex flex-col justify-start items-center w-full mb-4'>
-      <span className='mb-2 text-4xl text-orange-600'><FaUserAlt /></span>
+      <span className='mb-2 text-2xl sm:text-4xl text-orange-600'><FaUserAlt /></span>
       {!editable ? (
-        <div onDoubleClick={() => setEditable((prev) => !prev)} className='text-lg font-medium mb-2'>{name}</div>
+        <div onDoubleClick={() => setEditable((prev) => !prev)} className='text-md sm:text-lg font-medium mb-2'>{name}</div>
       ) : (
         <input
           type='text'
@@ -42,7 +42,7 @@ export default function Person({ idx, dateType }) {
           onChange={(e) => setName(e.target.value)}
           onBlur={handleEdit}
           onKeyDown={handleKeyPress}
-          className='text-lg font-medium mb-2 outline-orange-500 bg-transparent'
+          className='text-md sm:text-lg font-medium mb-2 outline-orange-500 bg-transparent'
           autoFocus
         ></input>
       )}

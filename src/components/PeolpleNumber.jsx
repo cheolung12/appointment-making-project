@@ -18,15 +18,15 @@ export default function PeolpleNumber() {
   }
 
   return (
-    <div className='mt-10 mb-20 flex'>
+    <div className='mt-0 sm:mt-10 mb-12 sm:mb-20 flex'>
       <button
         onClick={handleMinus}
-        className='box-border w-10 h-10 relative z-30 inline-flex items-center justify-center  overflow-hidden font-bold text-gray-600 transition-all duration-500 border border-gray-200 rounded-full cursor-pointer group ease bg-gradient-to-b from-white to-gray-50 hover:from-gray-50 hover:to-white active:to-white'
+        className='box-border w-8 sm:w-10 h-8 sm:h-10 relative z-30 inline-flex items-center justify-center  overflow-hidden font-bold text-gray-600 transition-all duration-500 border border-gray-200 rounded-full cursor-pointer group ease bg-gradient-to-b from-white to-gray-50 hover:from-gray-50 hover:to-white active:to-white'
       >
         <PiMinusBold />
       </button>
-      <span className='mx-5 text-3xl flex justify-center items-center  text-orange-500 '>
-        <span className='mr-4 text-3xl text-black'>
+      <span className='mx-5 text-2xl sm:text-3xl flex justify-center items-center  text-orange-500 '>
+        <span className='mr-4 text-2xl sm:text-3xl text-black'>
           <FaUserAlt />
         </span>
         {data.count}명
